@@ -25,13 +25,29 @@ $(function () {
     $('body').css({ 'background-color': '#1a1a1a', color: '#d9e9e8' });
     isDark = !isDark;
   }
-});*/
+});
+function saveProjectsToStorage(projects) {
+  localStorage.setItem('projects', JSON.stringify(projects));
+}
+*/
    var save_button = $('.saveBtn');
-   var task = [];
+   var task_list = [];
+   var descriptionText = $('.description');
+   
+   // can we do something like for each save clicked, get id of that section
    save_button.on('click', function () {
-    task.push($(this).val());
+    descriptionText.attr('id',this.parentElement.id);
     console.log(this);
-    console.log(task);
+    var task = {
+      id: this.parentElement.id,
+      description: descriptionText.val()
+    };
+    task_list.push(task);
+    console.log(this.parentElement);
+    console.log(this.parentElement.id);
+    console.log(descriptionText.val());
+    localStorage.setItem("task_local", JSON.stringify(task_list));
+    
     });
    
   // TODO: Add code to apply the past, present, or future class to each time
@@ -44,6 +60,15 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+  /*function readProjectsFromStorage() {
+  var projects = localStorage.getItem('projects');
+  if (projects) {
+    projects = JSON.parse(projects);
+  } else {
+    projects = [];
+  }
+  return projects;
+}*/
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
   $ ('#currentDay').text(today.format('MMM D, YYYY'));

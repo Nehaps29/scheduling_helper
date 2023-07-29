@@ -29,9 +29,9 @@ $(function () {
       //console.log(description_list.val());
       //console.log(this.previousElementSibling.value);
       localStorage.setItem("task_local", JSON.stringify(task_list));
-      readTaskFromStorage();
+      
       });
-   
+      
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -188,7 +188,7 @@ $(function () {
   //
 
 
-function readTaskFromStorage(){
+
   var write_task = localStorage.getItem('task_local');
   
   write_task = JSON.parse(write_task);
@@ -200,10 +200,11 @@ function readTaskFromStorage(){
     console.log(get_task);
     console.log(get_task.id);
     console.log(get_task.description_list);
-    $('#get_task.id').children('textarea').text(get_task.description_list);
+    //var id_string = "\""+"#"+get_task.id+"\""
+    $(`#${get_task.id}`).children('textarea').text(get_task.description_list);
   }
 
-}
+
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
   $ ('#currentDay').text(today.format('MMM D, YYYY, hh:mm A'));

@@ -29,26 +29,49 @@ $(function () {
 function saveProjectsToStorage(projects) {
   localStorage.setItem('projects', JSON.stringify(projects));
 }
-*/
+*//*
    var save_button = $('.saveBtn');
    var task_list = [];
    var descriptionText = $('.description');
    
    // can we do something like for each save clicked, get id of that section
    save_button.on('click', function () {
-    descriptionText.attr('id',this.parentElement.id);
-    console.log(this);
+
     var task = {
       id: this.parentElement.id,
-      description: descriptionText.val()
+      description_list: this.descriptionText.val()
+      //taskName: this.siblings(".description")
     };
     task_list.push(task);
     console.log(this.parentElement);
     console.log(this.parentElement.id);
+    console.log(save_button.siblings(".description").val())
     console.log(descriptionText.val());
     localStorage.setItem("task_local", JSON.stringify(task_list));
     
     });
+    */
+    var save_button = $('.saveBtn');
+    var task_list = [];
+
+    save_button.on('click', function () {
+
+      var task = {
+        id: this.parentElement.id,
+        description_list: $(this).siblings(".description").val()
+        //taskName: this.siblings(".description")
+        
+      };
+      task_list.push(task);
+      console.log(this.parentElement);
+      console.log(this.parentElement.id);
+      //console.log(save_button.siblings(".description").val())
+      //console.log(description_list);
+      //console.log(description_list.val());
+      console.log(this.previousElementSibling.value);
+      localStorage.setItem("task_local", JSON.stringify(task_list));
+      
+      });
    
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id

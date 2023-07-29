@@ -7,8 +7,33 @@ $(function () {
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
+  // useful when saving the description in local storage? id = hour-9, hour-10
   //
+  /*<div id="hour-10" class="row time-block present">
+        <div class="col-2 col-md-1 hour text-center py-3">10AM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+  themeButtonEl.on('click', function () {
+  if (isDark) {
+    $('body').css({ 'background-color': '#d9e9e8', color: '#1a1a1a' });
+    isDark = !isDark;
+  } else {
+    $('body').css({ 'background-color': '#1a1a1a', color: '#d9e9e8' });
+    isDark = !isDark;
+  }
+});*/
+   var save_button = $('.saveBtn');
+   var task = [];
+   save_button.on('click', function () {
+    task.push($(this).val());
+    console.log(this);
+    console.log(task);
+    });
+   
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -21,9 +46,7 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
-  $ ('currentDay').text(today.format('MMM D, YYYY'));
+  $ ('#currentDay').text(today.format('MMM D, YYYY'));
 });
 
 
-var today = dayjs();
-$ ('currentDay').text(today.format('MMM D, YYYY'));
